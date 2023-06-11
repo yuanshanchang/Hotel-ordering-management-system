@@ -129,24 +129,24 @@ void seviceForSeller()
     cout<<endl<<"           "<<setw(30)<<"1. 新增"<<setw(20)<<"2. 删除"<<endl;
 	cout<<"           "<<setw(30)<<"3. 查询"<<setw(20)<<"4.确认订单"<<endl;
 	cout<<"           "<<setw(30)<<"5.修改密码"<<setw(20)<< "6.排序"<<endl;
-	cout << "           " << setw(30) << "7.返回菜单" << endl;
+	cout << "           " << setw(30) << "7.修改菜品"<<setw(20)<<"8返回菜单" << endl;
 
 	string choice;
 	while(cin>>choice)
 	{
-		if(choice == "7")
+		if(choice == "8")
 		{
 			system("cls");
 			return;
 		}
 		//处理错误输入 
-		if(choice != "1" && choice != "2" && choice != "3" && choice != "4" && choice != "5"&& choice != "6")
+		if(choice != "1" && choice != "2" && choice != "3" && choice != "4" && choice != "5"&& choice != "6"&&choice!="7")
 	    {
 		    cout<<endl<<"输入错误"<<endl;
 			cout << endl << "           " << setw(30) << "1. 新增" << setw(20) << "2. 删除" << endl;
 			cout << "           " << setw(30) << "3. 查询" << setw(20) << "4.确认订单" << endl;
 			cout << "           " << setw(30) << "5.修改密码" << setw(20) << "6.排序" << endl;
-			cout << "           " << setw(30) << "7.返回菜单" << endl;
+			cout << "           " << setw(30) << "7.修改菜品"<<setw(20)<<"8返回菜单" << endl;
 			continue;
 	    }
 	    //从文件读取以初始化菜单信息和订单信息 
@@ -185,6 +185,8 @@ void seviceForSeller()
 			iSeller.cancelMenu(menu);
 		else if (choice == "6")
 			iSeller.sortMenu(menu);
+		else if (choice == "7")
+			iSeller.modifyMenuItem(menu);
 		else if(choice == "3")
 			iSeller.inquireOrder(order);
 		else if(choice == "4")
@@ -221,7 +223,7 @@ void seviceForSeller()
 				cout<<endl<<"           "<<setw(30)<<"1. 新增"<<setw(20)<<"2. 删除"<<endl;
 	           cout<<"           "<<setw(30)<<"3. 查询"<<setw(20)<<"4.确认订单"<<endl;
 	           cout<<"           "<<setw(30)<<"5.修改密码"<<setw(20)<< "6.排序"<<endl;
-			   cout << "           " << setw(30) << "7.返回菜单" << endl;
+			   cout << "           " << setw(30) << "7.修改菜品"<<setw(20)<<"8返回菜单" << endl;
 
 				continue;
 			}
@@ -251,7 +253,7 @@ void seviceForSeller()
 cout<<endl<<"           "<<setw(30)<<"1. 新增"<<setw(20)<<"2. 删除"<<endl;
 cout<<"           "<<setw(30)<<"3. 查询"<<setw(20)<<"4.确认订单"<<endl;
 	   cout<<"           "<<setw(30)<<"5.修改密码"<<setw(20)<< "6.排序"<<endl;
-	   cout << "           " << setw(30) << "7.返回菜单" << endl;
+	   cout << "           " << setw(30) << "7.修改菜品"<<setw(20)<<"8返回菜单" << endl;
 
 	}
 	/*if(choice == "6")

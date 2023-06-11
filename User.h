@@ -25,6 +25,7 @@ public:
 	void appendMenu(vector<Menu>&);
 	void cancelMenu(vector<Menu>&);
 	void sortMenu(vector<Menu>& );
+	void modifyMenuItem(vector<Menu>&);
 	void setPassword(string);
 	string getPassword();
 

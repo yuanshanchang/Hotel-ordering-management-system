@@ -453,6 +453,55 @@ void Seller::sortMenu(vector<Menu>& myMenu) {
 		cout << "无效的选项。" << endl;
 	}
 }
+
+
+//卖家修改菜品
+
+void Seller::modifyMenuItem(vector<Menu>& myMenu) {
+	cout << "请输入要修改的餐品ID：";
+	string dishID;
+	cin >> dishID;
+
+	bool found = false;
+	for (Menu& menuItem : myMenu) {
+		if (menuItem.getDishID() == dishID) {
+			found = true;
+			cout << "请输入修改后的餐品名： ";
+			string newName;
+			cin >> newName;
+			menuItem.setDishName(newName);
+
+			cout << "请输入修改后的餐品价格： ";
+			double newPrice;
+			cin >> newPrice;
+			menuItem.setPrice(newPrice);
+
+			cout << "餐品信息已成功修改。" << endl;
+			break;
+		}
+	}
+
+	if (!found) {
+		cout << "未找到对应的餐品ID。" << endl;
+	}
+	else {
+		// 更新菜单文件
+		inout.open("menu.txt", ios::app);
+		if (inout.fail())
+		{
+			cout << endl << "文件读取失败!" << endl;
+			return;
+		}
+		int k = myMenu.size();
+		for (int i = 0; i < myMenu.size(); ++i)
+		{
+			outputMenu(myMenu[i]);
+		}
+		inout.close();
+		return;
+	}
+}
+
 //卖家查询订单 
 void Seller::inquireOrder(vector<Order>&order)
 {
