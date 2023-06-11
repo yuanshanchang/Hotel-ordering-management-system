@@ -44,7 +44,7 @@ public:
 };
 #endif
 
-//Order类存有用户名，地址，电话，数量，日期，确认状态 
+//Order类存有用户名，座位，电话，数量，日期，确认状态 
 #ifndef ORDER_H
 #define ORDER_H
 class Order:public Menu

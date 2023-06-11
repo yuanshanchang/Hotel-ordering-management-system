@@ -135,12 +135,12 @@ void Buyer::bookOrder(vector<Menu>&myMenu,vector<Order>&order)
 	{
 		printMenu(myOrder[i]);
 	}
-	//判断此时买家是否为匿名状态，是则跳过输入姓名，地址，电话 
+	//判断此时买家是否为匿名状态，是则跳过输入姓名，座位，电话 
 	if(name == "no"||adress == "no")
 	{
 	    cout<<endl<<"请输入您的 姓名 : ";
 	    cin>>name;
-	    cout<<endl<<"请输入您的 地址 : ";
+	    cout<<endl<<"请输入您的 座位 : ";
 	    cin>>adress;
 	    cout<<endl<<"请输入您的 电话号码 : ";
 	    cin>>phone;
@@ -200,7 +200,7 @@ void Buyer::inquireOrder(vector<Order>&order)
 	cout<<left;
 	cout<<endl<<"您已代购的餐品如下 :"<<endl; 
 	cout<<endl<<setw(7)<<"ID"<<setw(10)<<"餐品名"<<setw(6)<<"价格"<<setw(4)<<"数量"<<setw(8)<<"客户名";
-		cout<<setw(16)<<"电话号码"<<setw(12)<<"地址"<<setw(15)<<"日期"<<setw(10)<<"备注"<<endl;
+		cout<<setw(16)<<"电话号码"<<setw(12)<<"座位"<<setw(15)<<"日期"<<setw(10)<<"备注"<<endl;
 	for(int i=0;i<num;++i){
 		printOrder(myOrder[i]);
 	}
@@ -220,7 +220,7 @@ void Buyer::modifyOrder(vector<Order>&order)
 	cout<<left;
 	cout<<endl<<"您已订购的菜品如下"<<endl;
 	cout<<endl<<setw(7)<<"ID"<<setw(10)<<"餐品名"<<setw(6)<<"价格"<<setw(4)<<"数量"<<setw(8)<<"客户名";
-		cout<<setw(16)<<"电话号码"<<setw(12)<<"地址"<<setw(15)<<"日期"<<setw(10)<<"备注"<<endl;
+		cout<<setw(16)<<"电话号码"<<setw(12)<<"座位"<<setw(15)<<"日期"<<setw(10)<<"备注"<<endl;
 	for(int i=0;i<num;++i)
 	{
 		printOrder(myOrder[i]);
@@ -429,7 +429,7 @@ void Seller::inquireOrder(vector<Order>&order)
 	cout<<left;
 	cout<<endl<<"订单如下:"<<endl;
 	cout<<endl<<setw(7)<<"ID"<<setw(10)<<"餐品名"<<setw(6)<<"价格"<<setw(4)<<"数量"<<setw(8)<<"客户名";
-		cout<<setw(16)<<"电话号码"<<setw(12)<<"地址"<<setw(15)<<"日期"<<setw(10)<<"备注"<<endl;
+		cout<<setw(16)<<"电话号码"<<setw(12)<<"座位"<<setw(15)<<"日期"<<setw(10)<<"备注"<<endl;
 	for(int i=0;i<order.size();++i)
 	{
 		printOrder(order[i]);
@@ -459,7 +459,7 @@ void Seller::modifyOrder(vector<Order>&order)
 	cout<<left;
 	cout<<endl<<"未确认订单如下: "<<endl;
 	cout<<endl<<setw(7)<<"ID"<<setw(10)<<"餐品名"<<setw(6)<<"价格"<<setw(8)<<"数量"<<setw(8)<<"客户名";
-		cout<<setw(16)<<"电话号码"<<setw(12)<<"地址"<<setw(15)<<"日期"<<setw(10)<<"备注"<<endl;
+		cout<<setw(16)<<"电话号码"<<setw(12)<<"座位"<<setw(15)<<"日期"<<setw(10)<<"备注"<<endl;
 	count = 0;
 	for(int i=0;i<order.size();++i)
 	{

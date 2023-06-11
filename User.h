@@ -29,7 +29,7 @@ public:
 };
 #endif
 
-//买家有名字、地址、电话、订单日期、自己的订单数量 和一个 vector<Order>类型的用于存储买家自己的所有订单 
+//买家有名字、座位、电话、订单日期、自己的订单数量 和一个 vector<Order>类型的用于存储买家自己的所有订单 
 #ifndef BUYER_H
 #define BUYER_H
 class Buyer:public User{
