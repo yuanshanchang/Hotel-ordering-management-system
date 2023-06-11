@@ -15,15 +15,12 @@ void printDate(Date date)
 	cout<<left;
 	cout<<date.getYear()<<'/'<<date.getMonth()<<'/'<<date.getDay()<<"-"<<date.getHour()<<'h';
 }
-
 //用于输出菜单 
 void printMenu(Menu m)
 {
 	cout<<left;
 	cout<<setw(20)<<m.getDishID()<<setw(20)<<m.getDishName()<<setw(20)<<m.getPrice()<<endl;
 }
-
-
 //用于输出订单 
 void printOrder(Order myOrder)
 {
@@ -37,13 +34,11 @@ void printOrder(Order myOrder)
 	}
 	else cout<<setw(10)<<"已确认"<<endl;
 }
-
 //用于将菜单写入文件 
 void outputMenu(Menu &iMenu)
 {
 	inout<<iMenu.getDishID()<<' '<<iMenu.getDishName()<<' '<<iMenu.getPrice()<<endl;
 }
-
 //用于将订单写入文件 
 void outputOrder(Order &iOrder)
 {
@@ -53,19 +48,16 @@ void outputOrder(Order &iOrder)
 	inout<<iOrder.getCustomerName()<<' '<<iOrder.getAdress()<<' '<<iOrder.getPhone()<<endl;
 	inout<<date.getYear()<<' '<<date.getMonth()<<' '<<date.getDay()<<' '<<date.getHour()<<' '<<modify<<endl;
 }
-
 Buyer::Buyer()
 {
 	name = "no";
 	adress = "no"; 
 	num = 0;
 }
-
 string Buyer::getName()
 {
 	return name;
 }
-
 //买家订菜 
 void Buyer::bookOrder(vector<Menu>&myMenu,vector<Order>&order)
 {
@@ -140,13 +132,10 @@ void Buyer::bookOrder(vector<Menu>&myMenu,vector<Order>&order)
 	{
 	    cout<<endl<<"请输入您的 姓名 : ";
 	    cin>>name;
-	    cout<<endl<<"请输入您的 座位 : ";
+	    cout<<endl<<"请输入您想要的的 座位（如a02） : ";
 	    cin>>adress;
 	    cout<<endl<<"请输入您的 电话号码 : ";
 	    cin>>phone;
-		cout << endl << "请输入您想要的座位号 : ";
-		cin >> setnum;
-
 	}
 	cout<<endl<<"请输入您的用餐时间,"<<endl;
 	cout<<"如 2023/5/2 14  : "<<endl;
@@ -174,7 +163,6 @@ void Buyer::bookOrder(vector<Menu>&myMenu,vector<Order>&order)
 	inout.close();
 	num = myOrder.size();
 }
-
 //买家查询订单 
 void Buyer::inquireOrder(vector<Order>&order)
 {
@@ -206,7 +194,6 @@ void Buyer::inquireOrder(vector<Order>&order)
 	}
 	return;
 }
-
 //买家取消订单 
 void Buyer::modifyOrder(vector<Order>&order)
 {
@@ -307,17 +294,15 @@ void Buyer::modifyOrder(vector<Order>&order)
 	num -= n;
 	delete cancleDish;delete cancle;
 }
-
 int Buyer::getNum()
 {
 	return num;
 }
-
 Seller::Seller()
 {
 	password = "888888";
 }
-
+//卖家增加菜品
 void Seller::appendMenu(vector<Menu>&myMenu)
 {
 	cout<<endl<<"要为系统添加新的餐品吗?  Y/N"<<endl;
@@ -357,7 +342,7 @@ void Seller::appendMenu(vector<Menu>&myMenu)
 	inout.close();
 	return;
 }
-
+//卖家删除菜品
 void Seller::cancelMenu(vector<Menu>&myMenu)
 {
 	cout<<endl<<"要删除菜品吗? Y/N"<<endl;
@@ -416,7 +401,58 @@ void Seller::cancelMenu(vector<Menu>&myMenu)
 	}
 	inout.close();
 }
+//卖家排序菜品
+void Seller::sortMenu(vector<Menu>& myMenu) {
+	cout << "请选择排序方式：" << endl;
+	cout << "1. 按照ID排序" << endl;
+	cout << "2. 按照价格排序" << endl;
 
+	int option;
+	cin >> option;
+	int i, n;
+	n = myMenu.size();
+	if (option == 1) {
+		// 使用冒泡排序按照餐品ID排序
+		int n = myMenu.size();
+		for (int i = 0; i < n - 1; ++i) {
+			for (int j = 0; j < n - i - 1; ++j) {
+				if (myMenu[j].getDishID() > myMenu[j + 1].getDishID()) {
+					swap(myMenu[j], myMenu[j + 1]);
+				}
+			}
+		}
+		system("cls");
+		cout << "按照ID排序完成。" << endl;
+		for (i = 0; i < n; ++i)
+		{
+			cout << "        ";
+			printMenu(myMenu[i]);
+		}
+	}
+	else if (option == 2) {
+		// 使用选择排序按照餐品价格排序
+		int n = myMenu.size();
+		for (int i = 0; i < n - 1; ++i) {
+			int minIndex = i;
+			for (int j = i + 1; j < n; ++j) {
+				if (myMenu[j].getPrice() < myMenu[minIndex].getPrice()) {
+					minIndex = j;
+				}
+			}
+			swap(myMenu[i], myMenu[minIndex]);
+		}
+		system("cls");
+		cout << "按照价格排序完成。" << endl;
+		for (i = 0; i < n; ++i)
+		{
+			cout << "        ";
+			printMenu(myMenu[i]);
+		}
+	}
+	else {
+		cout << "无效的选项。" << endl;
+	}
+}
 //卖家查询订单 
 void Seller::inquireOrder(vector<Order>&order)
 {
@@ -436,7 +472,6 @@ void Seller::inquireOrder(vector<Order>&order)
 	}
 	return;
 }
-
 //卖家确认订单 
 void Seller::modifyOrder(vector<Order>&order)
 {
@@ -549,12 +584,10 @@ void Seller::modifyOrder(vector<Order>&order)
 	inout.close();
 
 }
-
 void Seller::setPassword(string p)
 {
 	password = p;
 }
-
 string Seller::getPassword()
 {
 	return password;

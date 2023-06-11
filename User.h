@@ -24,8 +24,10 @@ public:
 	void inquireOrder(vector<Order>&);
 	void appendMenu(vector<Menu>&);
 	void cancelMenu(vector<Menu>&);
+	void sortMenu(vector<Menu>& );
 	void setPassword(string);
 	string getPassword();
+
 };
 #endif
 

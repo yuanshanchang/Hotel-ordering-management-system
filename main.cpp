@@ -13,7 +13,7 @@ vector<Menu>menu;
 
 void seviceForSeller();
 void seviceForBuyer();
-
+//判断情况，初步引导至买/卖家范围
 int main()
 {
 	string n;
@@ -123,26 +123,30 @@ void seviceForSeller()
 		cout<<endl<<"您已错误输入五次"<<endl;
 		return;
 	}
-	//1为增加菜单，2为删除菜单，3为查询订单，4为确认订单，5为设置密码，66.返回主菜单 
+	//1为增加菜单，2为删除菜单，3为查询订单，4为确认订单，5为设置密码，6.返回主菜单 
 	cout<<endl<<"请选择您的操作"<<endl;
 	cout<<left;
     cout<<endl<<"           "<<setw(30)<<"1. 新增"<<setw(20)<<"2. 删除"<<endl;
 	cout<<"           "<<setw(30)<<"3. 查询"<<setw(20)<<"4.确认订单"<<endl;
-	cout<<"           "<<setw(30)<<"5.修改密码"<<setw(20)<<"6.返回主菜单"<<endl;
+	cout<<"           "<<setw(30)<<"5.修改密码"<<setw(20)<< "6.排序"<<endl;
+	cout << "           " << setw(30) << "7.返回菜单" << endl;
+
 	string choice;
 	while(cin>>choice)
 	{
-		if(choice == "6")
+		if(choice == "7")
 		{
+			system("cls");
 			return;
 		}
 		//处理错误输入 
-		if(choice != "1" && choice != "2" && choice != "3" && choice != "4" && choice != "5")
+		if(choice != "1" && choice != "2" && choice != "3" && choice != "4" && choice != "5"&& choice != "6")
 	    {
 		    cout<<endl<<"输入错误"<<endl;
 			cout << endl << "           " << setw(30) << "1. 新增" << setw(20) << "2. 删除" << endl;
 			cout << "           " << setw(30) << "3. 查询" << setw(20) << "4.确认订单" << endl;
-			cout << "           " << setw(30) << "5.修改密码" << setw(20) << "6.返回主菜单" << endl;
+			cout << "           " << setw(30) << "5.修改密码" << setw(20) << "6.排序" << endl;
+			cout << "           " << setw(30) << "7.返回菜单" << endl;
 			continue;
 	    }
 	    //从文件读取以初始化菜单信息和订单信息 
@@ -174,10 +178,13 @@ void seviceForSeller()
 			menu.push_back(iMenu);
 		}
 		fout.close();
-		if( choice == "1")
-		    iSeller.appendMenu(menu);
-		else if(choice == "2")
+		//choice
+		if (choice == "1")
+			iSeller.appendMenu(menu);
+		else if (choice == "2")
 			iSeller.cancelMenu(menu);
+		else if (choice == "6")
+			iSeller.sortMenu(menu);
 		else if(choice == "3")
 			iSeller.inquireOrder(order);
 		else if(choice == "4")
@@ -187,7 +194,7 @@ void seviceForSeller()
             //修改密码 
 			string str1,str2;
 			cout<<right;
-			cout<<endl<<setw(35)<<"1 继续操作"<<setw(20)<<"2 返回"<<endl;
+			cout<<endl<<setw(35)<<"1 确认继续修改"<<setw(20)<<"2 返回"<<endl;
 			while(cin>>str1)
 			{
 				if(str1 == "2") break; 
@@ -213,7 +220,9 @@ void seviceForSeller()
 				cout<<left;
 				cout<<endl<<"           "<<setw(30)<<"1. 新增"<<setw(20)<<"2. 删除"<<endl;
 	           cout<<"           "<<setw(30)<<"3. 查询"<<setw(20)<<"4.确认订单"<<endl;
-	           cout<<"           "<<setw(30)<<"5.修改密码"<<setw(20)<<"6.返回主菜单"<<endl;
+	           cout<<"           "<<setw(30)<<"5.修改密码"<<setw(20)<< "6.排序"<<endl;
+			   cout << "           " << setw(30) << "7.返回菜单" << endl;
+
 				continue;
 			}
 			cout<<endl<<"请输入您的 新密码 : ";
@@ -241,15 +250,17 @@ void seviceForSeller()
 		cout<<left;
 cout<<endl<<"           "<<setw(30)<<"1. 新增"<<setw(20)<<"2. 删除"<<endl;
 cout<<"           "<<setw(30)<<"3. 查询"<<setw(20)<<"4.确认订单"<<endl;
-	   cout<<"           "<<setw(30)<<"5.修改密码"<<setw(20)<<"6.返回主菜单"<<endl;
+	   cout<<"           "<<setw(30)<<"5.修改密码"<<setw(20)<< "6.排序"<<endl;
+	   cout << "           " << setw(30) << "7.返回菜单" << endl;
+
 	}
-	if(choice == "6")
+	/*if(choice == "6")
 	{
 	    return;
-	}
+	}*/
 }
 
-
+//卖家
 void seviceForBuyer()
 {
 	Buyer ibuyer;
@@ -260,7 +271,7 @@ void seviceForBuyer()
 	cout<<left;
 	cout << endl << "请选择你的操作:" << endl;
 	cout << endl << "           " << setw(20) << "1. 订餐" << setw(20) << "2. 查询" << endl;
-	cout << "           " << setw(20) << "3. 取消" << setw(20) << "4.返回主菜单" << endl;
+	cout << "           " << setw(20) << "3. 取消订单" << setw(20) << "4.返回主菜单" << endl;
 	cin>>n;
     while(n!="4")
 	{
@@ -312,5 +323,9 @@ void seviceForBuyer()
 	    cout<<"           "<<setw(20)<<"3. 取消"<<setw(20)<<"4.返回主菜单"<<endl;
 		cin>>n;
 	}
-	if(n =="4") return ;
+	if (n == "4")
+	{
+		system("cls");
+		return;
+	}
 }
