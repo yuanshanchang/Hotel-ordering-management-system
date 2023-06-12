@@ -463,6 +463,14 @@ void Seller::modifyMenuItem(vector<Menu>& myMenu) {
 	cin >> dishID;
 
 	bool found = false;
+
+	// 打开菜单文件
+	inout.open("menu.txt", ios::out);
+	if (inout.fail()) {
+		cout << endl << "文件打开失败!" << endl;
+		return;
+	}
+
 	for (Menu& menuItem : myMenu) {
 		if (menuItem.getDishID() == dishID) {
 			found = true;
@@ -476,31 +484,25 @@ void Seller::modifyMenuItem(vector<Menu>& myMenu) {
 			cin >> newPrice;
 			menuItem.setPrice(newPrice);
 
+			// 累积菜单项到文件
+			outputMenu(menuItem);
 			cout << "餐品信息已成功修改。" << endl;
-			break;
+		}
+		else {
+			// 累积其他菜单项到文件
+			outputMenu(menuItem);
 		}
 	}
+
+	// 关闭菜单文件
+	inout.close();
 
 	if (!found) {
 		cout << "未找到对应的餐品ID。" << endl;
 	}
-	else {
-		// 更新菜单文件
-		inout.open("menu.txt", ios::app);
-		if (inout.fail())
-		{
-			cout << endl << "文件读取失败!" << endl;
-			return;
-		}
-		int k = myMenu.size();
-		for (int i = 0; i < myMenu.size(); ++i)
-		{
-			outputMenu(myMenu[i]);
-		}
-		inout.close();
-		return;
-	}
 }
+
+
 
 //卖家查询订单 
 void Seller::inquireOrder(vector<Order>&order)
